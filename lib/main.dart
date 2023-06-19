@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        
         textTheme: TextTheme(
             bodyMedium: defaultTextStyle,
             bodySmall: defaultTextStyle.apply(
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
             titleMedium: defaultTextStyle,
             labelMedium: defaultTextStyle),
         colorScheme: const ColorScheme.light(
+            background: LightThemeColor.backgroundColor,
             primary: LightThemeColor.primaryColor,
             secondary: LightThemeColor.secondaryColor,
             onSecondary: Colors.white),

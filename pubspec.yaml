@@ -41,6 +41,7 @@ dependencies:
   dio: ^5.2.0
   fluttertoast: ^8.2.2
   shared_preferences: ^2.1.1
+  flutter_svg: ^2.0.7
   
 
 dev_dependencies:
@@ -69,6 +70,21 @@ flutter:
   assets:
     -  assets/images/onBoarding1.jpg
     -  assets/images/onBoarding2.jpg
+    -  assets/images/all.svg
+    -  assets/images/clothing.svg
+    -  assets/images/accessories.svg
+    -  assets/images/shoes.svg
+    -  assets/images/bag.svg
+    -  assets/images/1.jpg
+    -  assets/images/2.jpg
+    -  assets/images/3.jpg
+    -  assets/images/4.jpg
+    -  assets/images/5.jpg
+    -  assets/images/6.jpg
+    -  assets/images/7.jpg
+    -  assets/images/8.jpg
+    -  assets/images/9.jpg
+    -  assets/images/10.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
