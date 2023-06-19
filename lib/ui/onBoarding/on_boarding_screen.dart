@@ -4,15 +4,15 @@ import 'package:fashion_ecommerce/ui/onBoarding/slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnBoarding extends StatefulWidget {
+class OnBoardingScreen extends StatefulWidget {
 
-  OnBoarding({super.key});
+  OnBoardingScreen({super.key});
 
   @override
-  State<OnBoarding> createState() => _OnBoardingState();
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
-class _OnBoardingState extends State<OnBoarding> {
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   final PageController pageController = PageController();

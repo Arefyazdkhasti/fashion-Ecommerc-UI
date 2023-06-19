@@ -1,5 +1,5 @@
 import 'package:fashion_ecommerce/ui/light_theme_color.dart';
-import 'package:fashion_ecommerce/ui/onBoarding/on_boarding.dart';
+import 'package:fashion_ecommerce/ui/root/root_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
             useMaterial3: true
       ),
       debugShowCheckedModeBanner: false,
-      home: OnBoarding(),
+      home: const RootScreen(),
+
     );
   }
 }
