@@ -1,8 +1,8 @@
 import 'package:fashion_ecommerce/data/model/category_entity.dart';
+import 'package:fashion_ecommerce/ui/itemDetail/item_detail_screen.dart';
 import 'package:fashion_ecommerce/ui/light_theme_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../common/utils.dart';
 import '../../data/model/item_entity.dart';
@@ -32,11 +32,13 @@ class DashBoardScreen extends StatelessWidget {
                     return _CategoryWidget(
                         categories: CategoryEntity.fakeCategories);
                   case 2:
-                    return _DiscountWidget();
+                    return const _DiscountWidget();
                   case 3:
                     return _ItemWidgets(items: ItemEntity.fakeListItem);
                   case 4:
-                    return const SizedBox(height: 60,);
+                    return const SizedBox(
+                      height: 60,
+                    );
                   default:
                     return Container();
                 }
@@ -58,6 +60,9 @@ class _ItemWidgetsState extends State<_ItemWidgets> {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final picWidth = (MediaQuery.of(context).size.width - 48) / 2;
+    final picHeight = picWidth * 1.5 - 20;
+    final ratio = picHeight / picWidth;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
@@ -66,80 +71,103 @@ class _ItemWidgetsState extends State<_ItemWidgets> {
           Text('New Items',
               textAlign: TextAlign.start,
               style: themeData.textTheme.titleLarge?.copyWith(fontSize: 32)),
+          const SizedBox(
+            height: 16,
+          ),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 16.0,
                 crossAxisSpacing: 16.0,
-                childAspectRatio: 0.46),
+                childAspectRatio: ratio / 2.9),
             itemCount: widget.items.length,
             itemBuilder: (context, index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
+              return Hero(
+                tag: "mainItemImage",
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16.0),
+                  onTap: () {
+                    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+                        builder: (context) =>
+                            ItemDetailScreen(item: widget.items[index])));
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(16.0),
-                        child: Image.asset(
-                          widget.items[index].image,
-                          width: (MediaQuery.of(context).size.width - 48) / 2,
-                          height: 270,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Positioned(
-                          top: 8,
-                          right: 8,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                widget.items[index].isLiked =
-                                    !widget.items[index].isLiked;
-                              });
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Icon(widget.items[index].isLiked
-                                  ? CupertinoIcons.heart_fill
-                                  : CupertinoIcons.heart),
+                      Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16.0),
+                            child: Image.asset(
+                              widget.items[index].image,
+                              width: picWidth,
+                              height: picHeight,
+                              fit: BoxFit.fill,
                             ),
-                          ))
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(widget.items[index].title,
-                      style: themeData.textTheme.bodyMedium?.copyWith(
-                          fontSize: 24,
-                          color: LightThemeColor.secondaryTextColor)),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(widget.items[index].price.toCurrency(),
+                          ),
+                          Positioned(
+                              top: 8,
+                              right: 8,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    widget.items[index].isLiked =
+                                        !widget.items[index].isLiked;
+                                  });
+                                },
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Icon(widget.items[index].isLiked
+                                      ? CupertinoIcons.heart_fill
+                                      : CupertinoIcons.heart),
+                                ),
+                              ))
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(widget.items[index].title,
                             style: themeData.textTheme.bodyMedium?.copyWith(
                                 fontSize: 24,
-                                color: LightThemeColor.primaryTextColor)),
+                                color: LightThemeColor.secondaryTextColor)),
                       ),
-                      CupertinoButton(
-                          onPressed: () {}, child: const Icon(CupertinoIcons.add, size: 24, color: LightThemeColor.iconColos,)),
                       const SizedBox(
-                        width: 8,
+                        height: 12,
                       ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Text(widget.items[index].price.toCurrency(),
+                                  style: themeData.textTheme.bodyMedium?.copyWith(
+                                      fontSize: 24,
+                                      color: LightThemeColor.primaryTextColor)),
+                            ),
+                            CupertinoButton(
+                                onPressed: () {},
+                                child: const Icon(
+                                  CupertinoIcons.add,
+                                  size: 24,
+                                  color: LightThemeColor.iconColos,
+                                )),
+                            
+                          ],
+                        ),
+                      )
                     ],
-                  )
-                ],
+                  ),
+                ),
               );
             },
           )

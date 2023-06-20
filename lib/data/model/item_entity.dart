@@ -88,8 +88,6 @@ class ItemEntity {
         size: [
           ClothSize.XS,
           ClothSize.S,
-          ClothSize.M,
-          ClothSize.L,
           ClothSize.XL
         ],
         isLiked: false),
@@ -102,7 +100,6 @@ class ItemEntity {
         price: '229',
         size: [
           ClothSize.XS,
-          ClothSize.S,
           ClothSize.M,
           ClothSize.L,
           ClothSize.XL
@@ -118,7 +115,6 @@ class ItemEntity {
         size: [
           ClothSize.XS,
           ClothSize.S,
-          ClothSize.M,
           ClothSize.L,
           ClothSize.XL
         ],
@@ -148,8 +144,6 @@ class ItemEntity {
         size: [
           ClothSize.XS,
           ClothSize.S,
-          ClothSize.M,
-          ClothSize.L,
           ClothSize.XL
         ],
         isLiked: false),
@@ -161,11 +155,9 @@ class ItemEntity {
             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         price: '229',
         size: [
-          ClothSize.XS,
           ClothSize.S,
           ClothSize.M,
           ClothSize.L,
-          ClothSize.XL
         ],
         isLiked: false)
   ];

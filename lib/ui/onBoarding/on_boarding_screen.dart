@@ -1,11 +1,11 @@
 import 'package:fashion_ecommerce/data/model/on_boarding_entity.dart';
 import 'package:fashion_ecommerce/ui/light_theme_color.dart';
 import 'package:fashion_ecommerce/ui/onBoarding/slider.dart';
+import 'package:fashion_ecommerce/ui/root/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-
   OnBoardingScreen({super.key});
 
   @override
@@ -42,11 +42,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: AppBar(),
       ),
       bottomSheet: Container(
+        color: Colors.white,
         padding: const EdgeInsets.all(36),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,9 +62,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   'Skip',
                   textAlign: TextAlign.center,
                   style: themeData.textTheme.bodyMedium?.copyWith(
-                    color: LightThemeColor.secondaryTextColor,
-                    fontWeight: FontWeight.bold
-                  ),
+                      color: LightThemeColor.secondaryTextColor,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -77,7 +78,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     curve: Curves.easeIn,
                   );
                 } else {
-                  // Last page reached, do something else here
+                  // Last page reached, navigate to root
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const RootScreen()),
+                  );
                 }
               },
               child: Container(
