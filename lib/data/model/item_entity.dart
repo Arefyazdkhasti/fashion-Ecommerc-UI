@@ -36,7 +36,7 @@ class ItemEntity {
     ItemEntity(
         id: '2',
         image: 'assets/images/2.jpg',
-        title: 'Autumn coat',
+        title: 'Party dress',
         description:
             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         price: '229',
@@ -51,7 +51,7 @@ class ItemEntity {
     ItemEntity(
         id: '3',
         image: 'assets/images/3.jpg',
-        title: 'Autumn coat',
+        title: 'Shooniz',
         description:
             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         price: '229',
@@ -66,7 +66,7 @@ class ItemEntity {
     ItemEntity(
         id: '4',
         image: 'assets/images/4.jpg',
-        title: 'Autumn coat',
+        title: 'Lady dress',
         description:
             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         price: '229',
@@ -81,7 +81,7 @@ class ItemEntity {
     ItemEntity(
         id: '5',
         image: 'assets/images/5.jpg',
-        title: 'Autumn coat',
+        title: 'Formal Blouse',
         description:
             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         price: '229',
@@ -94,7 +94,7 @@ class ItemEntity {
     ItemEntity(
         id: '6',
         image: 'assets/images/6.jpg',
-        title: 'Autumn coat',
+        title: 'Slut Dress',
         description:
             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.',
         price: '229',

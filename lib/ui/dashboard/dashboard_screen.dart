@@ -1,4 +1,6 @@
 import 'package:fashion_ecommerce/data/model/category_entity.dart';
+import 'package:fashion_ecommerce/ui/categories/categories_screen.dart';
+import 'package:fashion_ecommerce/ui/dashboard/items_list_widget.dart';
 import 'package:fashion_ecommerce/ui/itemDetail/item_detail_screen.dart';
 import 'package:fashion_ecommerce/ui/light_theme_color.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../../common/utils.dart';
 import '../../data/model/item_entity.dart';
+import '../category/category_screen.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});
@@ -34,7 +37,7 @@ class DashBoardScreen extends StatelessWidget {
                   case 2:
                     return const _DiscountWidget();
                   case 3:
-                    return _ItemWidgets(items: ItemEntity.fakeListItem);
+                    return ItemWidgets(items: ItemEntity.fakeListItem);
                   case 4:
                     return const SizedBox(
                       height: 60,
@@ -44,136 +47,6 @@ class DashBoardScreen extends StatelessWidget {
                 }
               }),
         ));
-  }
-}
-
-class _ItemWidgets extends StatefulWidget {
-  const _ItemWidgets({super.key, required this.items});
-
-  final List<ItemEntity> items;
-
-  @override
-  State<_ItemWidgets> createState() => _ItemWidgetsState();
-}
-
-class _ItemWidgetsState extends State<_ItemWidgets> {
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    final picWidth = (MediaQuery.of(context).size.width - 48) / 2;
-    final picHeight = picWidth * 1.5 - 20;
-    final ratio = picHeight / picWidth;
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
-      child: Expanded(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('New Items',
-              textAlign: TextAlign.start,
-              style: themeData.textTheme.titleLarge?.copyWith(fontSize: 32)),
-          const SizedBox(
-            height: 16,
-          ),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16.0,
-                crossAxisSpacing: 16.0,
-                childAspectRatio: ratio / 2.9),
-            itemCount: widget.items.length,
-            itemBuilder: (context, index) {
-              return Hero(
-                tag: "mainItemImage",
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(16.0),
-                  onTap: () {
-                    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ItemDetailScreen(item: widget.items[index])));
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(16.0),
-                            child: Image.asset(
-                              widget.items[index].image,
-                              width: picWidth,
-                              height: picHeight,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Positioned(
-                              top: 8,
-                              right: 8,
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    widget.items[index].isLiked =
-                                        !widget.items[index].isLiked;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Icon(widget.items[index].isLiked
-                                      ? CupertinoIcons.heart_fill
-                                      : CupertinoIcons.heart),
-                                ),
-                              ))
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text(widget.items[index].title,
-                            style: themeData.textTheme.bodyMedium?.copyWith(
-                                fontSize: 24,
-                                color: LightThemeColor.secondaryTextColor)),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Text(widget.items[index].price.toCurrency(),
-                                  style: themeData.textTheme.bodyMedium?.copyWith(
-                                      fontSize: 24,
-                                      color: LightThemeColor.primaryTextColor)),
-                            ),
-                            CupertinoButton(
-                                onPressed: () {},
-                                child: const Icon(
-                                  CupertinoIcons.add,
-                                  size: 24,
-                                  color: LightThemeColor.iconColos,
-                                )),
-                            
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              );
-            },
-          )
-        ]),
-      ),
-    );
   }
 }
 
@@ -260,13 +133,29 @@ class _CategoryWidget extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(16, 16, 8, 16),
               child: Column(
                 children: [
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(40)),
-                    child: categories[index].image,
+                  InkWell(
+                    borderRadius: BorderRadius.circular(40),
+                    onTap: () {
+                      if (index == 0) {
+                        //navigate to Categories Screen
+                        Navigator.of(context, rootNavigator: true).push(
+                            MaterialPageRoute(
+                                builder: (context) => const CategoriesScren()));
+                      } else {
+                        //navigate to Category Screen
+                        Navigator.of(context, rootNavigator: true).push(
+                            MaterialPageRoute(
+                                builder: (context) => CategoryScren(category: categories[index])));
+                      }
+                    },
+                    child: Container(
+                      height: 80,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(40)),
+                      child: categories[index].image,
+                    ),
                   ),
                   const SizedBox(
                     height: 16,

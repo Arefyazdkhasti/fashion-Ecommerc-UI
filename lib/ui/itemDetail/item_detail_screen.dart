@@ -60,7 +60,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                     ),
                   ),
                   Positioned(
-                    top: 32,
+                    top: 36,
                     left: 16,
                     right: 16,
                     child: Row(
