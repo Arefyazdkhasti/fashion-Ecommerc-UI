@@ -1,7 +1,6 @@
 import 'package:fashion_ecommerce/data/model/category_entity.dart';
 import 'package:fashion_ecommerce/ui/categories/categories_screen.dart';
 import 'package:fashion_ecommerce/ui/dashboard/items_list_widget.dart';
-import 'package:fashion_ecommerce/ui/itemDetail/item_detail_screen.dart';
 import 'package:fashion_ecommerce/ui/light_theme_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

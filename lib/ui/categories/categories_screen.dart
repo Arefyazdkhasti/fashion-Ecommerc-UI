@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce/common/utils.dart';
+import 'package:fashion_ecommerce/ui/basket/bakset_screen.dart';
 import 'package:fashion_ecommerce/ui/light_theme_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -202,7 +203,11 @@ class _ToolBar extends StatelessWidget {
         Stack(
           children: [
             CupertinoButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).push(
+                            MaterialPageRoute(
+                                builder: (context) => const BasketScreen()));
+                },
                 child: const Icon(
                   CupertinoIcons.bag_fill,
                   size: 24,
